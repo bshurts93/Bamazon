@@ -25,14 +25,28 @@ function seeItems() {
             console.log(item.item_id + "   |   " + item.product_name + "   |   " + item.price);
         }
         console.log(cliBr);
-
-
-        connection.end();
-
         chooseItem();
+    });
+
+
+}
+
+function getItemByID(id) {
+    connection.query("SELECT * FROM bamazon.products WHERE item_id =" + id + ";", function (error, results) {
+        name = results[0].product_name;
+
+        console.log(name);
     });
 }
 
+function checkStock(id) {
+    connection.query("SELECT product_name, stock_quantity FROM bamazon.products WHERE item_id =" + id + ";", function (error, results) {
+        name = results[0].product_name;
+        stock = results[0].stock_quantity;
+
+        console.log(name + " current stock: " + stock);
+    });
+}
 
 
 // INQUIRER PROMPTS
@@ -52,12 +66,23 @@ function chooseItem() {
             // }
         }
     ]).then(function (res) {
-        console.log("cool! you selected the item with an id of " + res.chosenID);
+        howMany(res.chosenID);
     });
 }
 
+function howMany() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "amount",
+            message: "How many would you like to buy?"
+        }
+    ]).then(function (res) {
+        // getItemByID()
+        console.log(res.amount + " added to your cart.");
+    });
+}
 
+// seeItems();
 
-
-
-seeItems();
+checkStock(4);
