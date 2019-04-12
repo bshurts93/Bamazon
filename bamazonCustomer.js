@@ -14,7 +14,10 @@ connection.connect();
 connection.query('SELECT * FROM bamazon.products;', function (error, results) {
     if (error) throw error;
 
-    console.log(results);
+    for (var i = 0; i < results.length; i++) {
+        console.log(results[i].product_name);
+    }
+
 
     connection.end();
 });
