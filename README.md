@@ -1,6 +1,27 @@
 # Bamazon
-Online storefront powered with node.js and MySQL
 
-In this activity, you'll be creating an Amazon-like storefront with the MySQL skills you learned this unit. The app will take in orders from customers and deplete stock from the store's inventory. As a bonus task, you can program your app to track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.
+A simple node.js based marketplace. Shop as a customer or monitor inventory as a manager.
 
-Make sure you save and require the MySQL and Inquirer npm packages in your homework files--your app will need them for data input and storage.
+### Prerequisites
+
+- Node.js
+
+## NPM Packages
+
+- MySQL
+- Inquirer
+- Console.table
+
+### Installing
+
+It's as simple as `npm i`. All dependencies are ready in the `package.json`.
+
+
+## Bamazon in Action
+
+Successful checkout as a customer
+![checkout_success](https://user-images.githubusercontent.com/35508654/56305130-3c8b3e80-6105-11e9-8fa4-b3125ff1f996.gif)
+
+Unsuccessful checkout, not enough stock
+![checkout_failure](https://user-images.githubusercontent.com/35508654/56305458-f682aa80-6105-11e9-8ead-522ed7104a30.gif)
+
