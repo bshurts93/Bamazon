@@ -49,7 +49,7 @@ function menu() {
                 addToInventory();
                 break;
             case "Add new product":
-                console.log("I CHOSE 4");
+                newProductPrompt();
                 break;
         }
     });
@@ -84,6 +84,45 @@ function addToInventoryPrompt() {
     });
 }
 
+function newProductPrompt() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Name of product:",
+            name: "name"
+        },
+        {
+            type: "input",
+            message: "Department:",
+            name: "department"
+        },
+        {
+            type: "input",
+            message: "Price per item:",
+            name: "price"
+        },
+        {
+            type: "input",
+            message: "Initial stock quantity:",
+            name: "stock"
+        }
+    ]).then(function (response) {
+        var name = response.name;
+        var dept = response.department;
+        var price = response.price;
+        var stock = response.stock;
+
+        console.log(name);
+        console.log(dept);
+        console.log(price);
+        console.log(stock);
+
+        addNewProduct(name, dept, price, stock);
+
+        setTimeout(menu, 1000);
+    });
+}
+
 // MySQL FUNCTIONS
 
 function seeItems() {
@@ -108,6 +147,13 @@ function addToInventory() {
     console.log("\r\n\r\n");
     seeItems();
     setTimeout(addToInventoryPrompt, 1000);
+}
+
+function addNewProduct(name, dept, price, stock) {
+    connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('" + name + "', '" + dept + "', '" + price + "', '" + stock + "');", function (error, results) {
+        console.log("\r\n\r\n");
+        console.log("New item added: " + name + ". Current stock: " + stock + ".");
+    });
 }
 
 menu();
