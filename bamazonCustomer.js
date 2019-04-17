@@ -1,5 +1,6 @@
 var inquirer = require("inquirer");
 var mysql = require('mysql');
+const cTable = require("console.table");
 
 var cliBr = "---------------------------------------------------------------";
 
@@ -15,16 +16,11 @@ var connection = mysql.createConnection({
 function seeItems() {
     connection.connect();
 
-    connection.query('SELECT * FROM bamazon.products;', function (error, results) {
+    connection.query('SELECT item_id AS ID, product_name AS Product, department_name AS Department, price AS Price, stock_quantity AS Stock FROM bamazon.products;', function (error, results) {
         if (error) throw error;
 
+        console.table("Available Items", results);
 
-        for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            console.log(cliBr);
-            console.log(item.item_id + "   |   " + item.product_name + "   |   $" + item.price + "   |   " + item.stock_quantity + " left");
-        }
-        console.log(cliBr);
         chooseItem();
     });
 
