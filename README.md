@@ -16,6 +16,9 @@ A simple node.js based marketplace. Shop as a customer or monitor inventory as a
 
 It's as simple as `npm i`. All dependencies are ready in the `package.json`.
 
+## Customer and Manager
+
+With Bamazon, there are two seperate applications. One for a customer to search the database and make purchases, one for a manager to monitor and add to each item's stock quantity and add new items.
 
 ## Bamazon in Action
 
