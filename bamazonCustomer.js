@@ -23,8 +23,6 @@ function seeItems() {
 
         chooseItem();
     });
-
-
 }
 
 function getItemByID(id) {
